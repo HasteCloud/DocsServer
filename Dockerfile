@@ -4,11 +4,11 @@ FROM golang:1.12-rc-alpine as builder
 RUN apk add --no-cache gcc curl wget git
 
 WORKDIR /go/app
-ADD . .
-WORKDIR src/main/
+COPY . .
+WORKDIR /go/app/src/main/
 RUN GO111MODULE=on CGO_ENABLE=0 GOOS=linux go build -o mddocs
 
-FROM alpine
+FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 
 WORKDIR /app
