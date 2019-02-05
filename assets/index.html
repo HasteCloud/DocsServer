@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{config.Title|title}} | Powered By Papers</title>
+    <link rel="stylesheet" href="/css" type="text/css">
+    <link rel="stylesheet" href="/git-css" type="text/css">
+</head>
+<body>
+    <nav>
+        <span class="title">{{config.Title}}</span>
+        <span class="menu">
+        {% for item in config.NavItems %}
+            <span>
+                <a href="{{item.Path}}">{{item.Title}}</a>
+            </span>
+        {% endfor %}
+        </span>
+    </nav>
+    <subnav>
+        {% for item in config.SubNavItems %}
+            <div class="level{{item.Level}}">
+                <a href="{{item.Path}}">{{item.Title}}</a>
+            </div>
+        {% endfor %}
+    </subnav>
+    <content>{{body|safe}}</content>
+    <footer>
+        Powered By Papers
+    </footer>
+    <script>
+        document
+            .querySelectorAll('content h1,content h2,content h3,content h4,content h5,content h6')
+            .forEach((element, index) => {
+                element.id = index+element.textContent
+            });
+    </script>
+</body>
+</html>
