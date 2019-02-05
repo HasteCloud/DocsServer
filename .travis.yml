@@ -1,0 +1,18 @@
+language: go
+go:
+  - "1.11"
+before_script:
+  - cd src/main
+  - go vet ./...
+os:
+  - linux
+  - osx
+  - windows
+sudo: false
+install: true
+env:
+  - GO111MODULE=on CGO_ENABLE=0
+script:
+  - go build
+  - go test
+  
